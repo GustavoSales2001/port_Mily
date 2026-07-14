@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Milene Aguiar | Marketing & Social Media</title>
     
-    <!-- Fontes Premium -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- CSS Embutido (Garante que o visual carregue sem erros) -->
     <style>
         :root {
-            --bg-light: #F8F5F1; /* Bege claro clean solicitado */
+            --bg-light: #F8F5F1;
             --bg-card: #FFFFFF;
             --accent-gold: #E6DCCF;
             --accent-dark: #C8B6A6;
@@ -26,6 +24,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        /* Rolagem Suave para os âncoras */
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -62,7 +65,7 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 30px;
+            gap: 25px;
         }
 
         .nav-links a {
@@ -84,6 +87,7 @@
             transition: all 0.3s ease;
             display: inline-block;
             margin-top: 20px;
+            margin-right: 10px;
         }
 
         .btn-primary {
@@ -93,6 +97,19 @@
 
         .btn-primary:hover {
             background-color: var(--accent-dark);
+            transform: translateY(-3px);
+            color: #fff;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-dark);
+            border: 1px solid var(--text-dark);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-dark);
+            color: #fff;
             transform: translateY(-3px);
         }
 
@@ -112,13 +129,14 @@
             max-width: 600px;
         }
 
-        .hero .subtitle {
+        .subtitle {
             font-family: var(--font-body);
             text-transform: uppercase;
             letter-spacing: 2px;
             font-size: 0.85rem;
             color: var(--accent-dark);
             margin-bottom: 15px;
+            font-weight: 600;
         }
 
         .hero .title {
@@ -130,7 +148,7 @@
         .hero p {
             font-size: 1.1rem;
             color: var(--text-light);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .hero-image {
@@ -147,57 +165,52 @@
             object-fit: cover;
         }
 
-        /* Stats (Números Animados) */
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 80px 5%;
-            background-color: var(--bg-card);
-            border-top: 1px solid rgba(0,0,0,0.05);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            flex-wrap: wrap;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 30px;
-            min-width: 250px;
-        }
-
-        .stat-card h3 {
-            font-size: 3.5rem;
-            display: inline-block;
-            color: var(--text-dark);
-        }
-
-        .stat-card span {
-            font-size: 2.5rem;
-            color: var(--accent-dark);
-            font-family: var(--font-heading);
-        }
-
-        .stat-card p {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-light);
-            margin-top: 5px;
-        }
-
-        /* Cases Section (Layout lado a lado) */
-        .cases-section {
+        /* Seções Gerais */
+        .section-padding {
             padding: 100px 5%;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
-        .section-header h2 { font-size: 3rem; }
+        .section-header h2 { font-size: 3rem; margin-bottom: 15px; }
         .section-header p { color: var(--text-light); font-size: 1.1rem; }
 
+        /* Criadora de Conteúdo / Sobre */
+        .about-grid {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.03);
+            margin-bottom: 40px;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 { font-size: 2.2rem; margin-bottom: 10px; }
+        .about-text h4 { font-family: var(--font-body); font-weight: 500; color: var(--text-light); margin-bottom: 20px; }
+        
+        /* Layout Zigue-Zague Cases */
         .case-row {
             display: flex;
             align-items: center;
@@ -209,53 +222,20 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.03);
         }
 
-        /* Inverte a ordem nos cases pares para o design zigue-zague */
-        .case-row:nth-child(even) {
-            flex-direction: row-reverse;
-        }
+        .case-row:nth-child(even) { flex-direction: row-reverse; }
 
-        .case-img {
-            flex: 1;
-            border-radius: 16px;
-            overflow: hidden;
-        }
+        .case-img { flex: 1; border-radius: 16px; overflow: hidden; }
+        .case-img img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
+        .case-img:hover img { transform: scale(1.05); }
 
-        .case-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
+        .case-text { flex: 1; padding: 20px; }
+        .case-text h3 { font-size: 2.2rem; margin-bottom: 15px; }
+        .case-text p { color: var(--text-light); font-size: 1.1rem; margin-bottom: 20px; }
 
-        .case-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .case-text {
-            flex: 1;
-            padding: 20px;
-        }
-
-        .case-text h3 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-        }
-
-        .case-text p {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        .tags {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
+        .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; }
         .tag {
             background: var(--bg-light);
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 500;
@@ -263,17 +243,92 @@
             border: 1px solid var(--accent-gold);
         }
 
-        /* Imagem Tela Cheia */
-        .full-image {
-            padding: 0 5% 100px;
+        /* Habilidades e Experiência */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .skill-box {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            border-top: 4px solid var(--accent-dark);
+        }
+
+        .skill-box h4 { margin-bottom: 15px; font-size: 1.3rem; }
+        .skill-box ul { list-style: none; color: var(--text-light); }
+        .skill-box ul li { margin-bottom: 8px; position: relative; padding-left: 20px; }
+        .skill-box ul li::before {
+            content: "•";
+            color: var(--accent-dark);
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* Por que me contratar */
+        .hire-me {
+            background: var(--text-dark);
+            color: #fff;
+            padding: 50px;
+            border-radius: 24px;
+            text-align: left;
         }
         
-        .full-image img {
+        .hire-me h3 { color: var(--accent-gold); font-size: 2rem; margin-bottom: 20px; }
+        .hire-me ul { list-style: none; }
+        .hire-me ul li { margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
+        .hire-me ul li::before { content: "✔"; color: var(--accent-gold); }
+
+        /* Print Perfil Showcase */
+        .profile-screenshot {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-screenshot img {
             width: 100%;
-            height: 60vh;
-            object-fit: cover;
+            max-width: 320px; /* Mantém o formato alongado de print de celular */
             border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border: 6px solid var(--bg-card); /* Imita a borda do celular/destaque */
+            object-fit: cover;
+        }
+
+        /* Footer / Contato */
+        footer {
+            background-color: var(--bg-card);
+            padding: 60px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-info a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 10px 20px;
+            border: 1px solid var(--accent-gold);
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .contact-info a:hover {
+            background: var(--accent-gold);
         }
 
         /* Classes de Animação */
@@ -293,72 +348,155 @@
 
         /* Responsivo Celular */
         @media (max-width: 768px) {
-            .hero, .case-row, .case-row:nth-child(even) {
+            .hero, .about-grid, .case-row, .case-row:nth-child(even) {
                 flex-direction: column;
                 text-align: center;
             }
             .hero .title { font-size: 2.8rem; }
             .hero-image { justify-content: center; margin-top: 30px; }
-            .nav-links { display: none; } /* Pode adicionar um menu hamburguer depois */
-        }
-        /* Ajuste forçado para as imagens dos cases */
-        .presentation-img img {
-            width: 100% !important;
-            height: 450px !important;
-            object-fit: cover !important;
-            object-position: center !important;
+            .nav-links { display: none; } 
+            .hire-me { padding: 30px; }
+            .section-header h2 { font-size: 2.2rem; }
+            .profile-screenshot img { max-width: 260px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navegação -->
     <nav class="navbar">
         <div class="logo">Milene Aguiar.</div>
         <ul class="nav-links">
             <li><a href="#home">Início</a></li>
-            <li><a href="#numeros">Impacto</a></li>
+            <li><a href="#sobre">Sobre Mim</a></li>
+            <li><a href="#experiencia">Experiência</a></li>
             <li><a href="#cases">Cases</a></li>
+            <li><a href="#contato">Contato</a></li>
         </ul>
     </nav>
 
-    <!-- Seção Hero -->
     <header id="home" class="hero">
         <div class="hero-content reveal reveal-left">
-            <h2 class="subtitle">Marketing Digital & Estratégia</h2>
+            <h2 class="subtitle">Marketing Digital & Criação</h2>
             <h1 class="title">Criando conexões que geram resultados.</h1>
-            <p>Especialista em Social Media, Criação de Conteúdo e idealizadora do case de sucesso @millydegusta.</p>
+            <p>Profissional de Marketing em formação, focada em Social Media, Criação de Conteúdo e idealizadora do projeto autoral @millydegusta.</p>
             <a href="#cases" class="btn btn-primary">Ver Portfólio</a>
+            <a href="#sobre" class="btn btn-outline">Sobre Mim</a>
         </div>
         <div class="hero-image reveal reveal-right">
             <img src="assets/img/perfil.jpeg" alt="Milene Aguiar">
         </div>
     </header>
 
-    <!-- Seção de Números -->
-    <section id="numeros" class="stats">
-        <div class="stat-card reveal">
-            <h3 class="counter" data-target="10800">0</h3><span>+</span>
-            <p>Seguidores (@millydegusta)</p>
+    <section id="sobre" class="section-padding">
+        <div class="about-grid reveal">
+            <div class="about-img">
+                <img src="assets/img/bastidores.jpeg" alt="Bastidores de Eventos">
+            </div>
+            <div class="about-text">
+                <h2 class="subtitle">Quem sou</h2>
+                <h3>Milene Aguiar</h3>
+                <h4>Marketing Digital | Social Media | Criadora de Conteúdo</h4>
+                <p>Transformando estratégias em conteúdo que gera resultados.</p>
+                <br>
+                <p>Profissional de Marketing em formação, com experiência prática em Marketing Digital, gestão de redes sociais, criação de conteúdo, WordPress, campanhas e comunicação institucional.</p>
+            </div>
         </div>
-        <div class="stat-card reveal">
-            <h3 class="counter" data-target="900000">0</h3><span>+</span>
-            <p>Views Mensais</p>
-        </div>
-        <div class="stat-card reveal">
-            <h3 class="counter" data-target="2000000">0</h3><span>+</span>
-            <p>No Maior Reel</p>
+
+        <div class="about-grid reveal" style="flex-direction: row-reverse;">
+            <div class="about-img">
+                <div style="background: var(--text-dark); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; min-height: 300px; border-radius: 16px;">
+                    <h2 style="font-family: var(--font-heading); font-size: 3rem; color: var(--accent-gold);">@millydegusta</h2>
+                </div>
+            </div>
+            <div class="about-text">
+                <h2 class="subtitle">Projeto Autoral</h2>
+                <h3>Criadora de Conteúdo</h3>
+                <p>Desenvolvo um projeto autoral no Instagram voltado à gastronomia, onde aplico estratégias reais de crescimento orgânico e produção audiovisual.</p>
+                
+                <div class="tags" style="margin-top: 20px;">
+                    <span class="tag" style="background: var(--accent-dark); color: white;">10,8 mil seguidores</span>
+                    <span class="tag" style="background: var(--text-dark); color: white;">+900 mil visualizações</span>
+                </div>
+                
+                <p style="margin-top: 15px; font-weight: 500;">Minhas atuações no projeto:</p>
+                <div class="tags">
+                    <span class="tag">Planejamento</span>
+                    <span class="tag">Gravação</span>
+                    <span class="tag">Edição</span>
+                    <span class="tag">Copywriting</span>
+                    <span class="tag">Análise de Métricas</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Seção de Cases (Com o texto ao lado da imagem) -->
-    <section id="cases" class="cases-section">
+    <section id="experiencia" class="section-padding" style="background: var(--bg-card);">
+        <div class="section-header reveal">
+            <h2>Experiência & Habilidades</h2>
+            <p>Conhecimentos práticos em ferramentas e estratégias de Marketing Digital</p>
+        </div>
+
+        <div class="skills-container reveal">
+            <div class="skill-box">
+                <h4>Redes Sociais</h4>
+                <ul>
+                    <li>Instagram</li>
+                    <li>Facebook</li>
+                    <li>LinkedIn</li>
+                    <li>TikTok</li>
+                </ul>
+            </div>
+            <div class="skill-box">
+                <h4>Conteúdo</h4>
+                <ul>
+                    <li>Copywriting</li>
+                    <li>Fotografia</li>
+                    <li>Vídeos</li>
+                    <li>Storytelling</li>
+                </ul>
+            </div>
+            <div class="skill-box">
+                <h4>Marketing</h4>
+                <ul>
+                    <li>Campanhas</li>
+                    <li>Branding</li>
+                    <li>Marketing Digital</li>
+                </ul>
+            </div>
+            <div class="skill-box">
+                <h4>Ferramentas & Site</h4>
+                <ul>
+                    <li>Meta Business Suite & mLabs</li>
+                    <li>WordPress</li>
+                    <li>CRM & TOTVS</li>
+                    <li>Excel & SharePoint</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="hire-me reveal">
+            <h3>Por que me contratar?</h3>
+            <ul>
+                <li>Experiência prática em Marketing Digital</li>
+                <li>Gestão completa de redes sociais</li>
+                <li>Produção de conteúdo estratégico</li>
+                <li>Conhecimento em Marketing de Influência</li>
+                <li>Perfil analítico e orientado a resultados</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="cases" class="section-padding">
+        
+        <div class="profile-screenshot reveal">
+            <img src="assets/img/perfil_milly.jpeg" alt="Print do Perfil @millydegusta no Instagram mostrando destaques e seguidores">
+        </div>
+
         <div class="section-header reveal">
             <h2>Resultados que falam por si</h2>
             <p>Insights reais e performance do case @millydegusta</p>
         </div>
 
-        <!-- Case 1: 2 Milhões -->
         <div class="case-row reveal">
             <div class="case-img">
                 <img src="assets/img/insights_2mi.jpeg" alt="Insight 2 Milhões">
@@ -374,7 +512,6 @@
             </div>
         </div>
 
-        <!-- Case 2: 756k (O layout inverte automaticamente aqui) -->
         <div class="case-row reveal">
             <div class="case-img">
                 <img src="assets/img/insights_756k.jpeg" alt="Insight 756k">
@@ -390,7 +527,6 @@
             </div>
         </div>
 
-        <!-- Case 3: Divas Corporativas -->
         <div class="case-row reveal">
             <div class="case-img">
                 <img src="assets/img/insights_216k.jpeg" alt="Insight 216k">
@@ -407,15 +543,23 @@
         </div>
     </section>
 
-    <!-- Bastidores -->
-    <section class="full-image reveal">
-        <img src="assets/img/bastidores.jpeg" alt="Bastidores de Eventos">
-    </section>
+    <footer id="contato">
+        <div class="section-header reveal">
+            <h2>Vamos trabalhar juntos?</h2>
+            <p>Entre em contato para conversarmos sobre como posso agregar à sua equipe.</p>
+        </div>
+        <div class="contact-info reveal">
+            <a href="mailto:mileneaguiarsalesbarros@gmail.com" target="_blank">✉️ mileneaguiarsalesbarros@gmail.com</a>
+            <a href="https://wa.me/5511922198936" target="_blank">📱 (11) 92219-8936</a>
+            <a href="https://www.linkedin.com/in/milene-aguiar-2230ba3a3" target="_blank">💼 LinkedIn</a>
+            <a href="https://instagram.com/millydegusta" target="_blank">📸 @millydegusta</a>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.9rem; color: var(--text-light);">© 2024 Milene Aguiar. Todos os direitos reservados.</p>
+    </footer>
 
-    <!-- JavaScript Embutido -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Animação de entrada dos elementos (Scroll Reveal)
+            // Animação de entrada dos elementos (Scroll Reveal)
             const reveals = document.querySelectorAll('.reveal');
             
             const revealOnScroll = () => {
@@ -431,47 +575,7 @@
             };
 
             window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll(); // Ativa os elementos que já estão visíveis no topo
-
-            // 2. Animação dos Números (Contadores)
-            const counters = document.querySelectorAll('.counter');
-            let hasCounted = false;
-
-            const startCounting = () => {
-                counters.forEach(counter => {
-                    counter.innerText = '0';
-                    const target = +counter.getAttribute('data-target');
-                    const duration = 2000; // 2 segundos de animação
-                    const increment = target / (duration / 16); // 60fps
-
-                    const updateCount = () => {
-                        const current = +counter.innerText.replace(/\./g, '');
-                        if (current < target) {
-                            counter.innerText = Math.ceil(current + increment).toLocaleString('pt-BR');
-                            requestAnimationFrame(updateCount);
-                        } else {
-                            counter.innerText = target.toLocaleString('pt-BR');
-                        }
-                    };
-                    updateCount();
-                });
-            };
-
-            // Detecta quando a seção de números aparece na tela para iniciar a contagem
-            const statsSection = document.querySelector('.stats');
-            
-            if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    if(entries[0].isIntersecting && !hasCounted) {
-                        startCounting();
-                        hasCounted = true;
-                    }
-                }, { threshold: 0.5 });
-                observer.observe(statsSection);
-            } else {
-                // Fallback para navegadores mais antigos
-                startCounting(); 
-            }
+            revealOnScroll(); // Ativa os elementos visíveis no carregamento inicial
         });
     </script>
 </body>
